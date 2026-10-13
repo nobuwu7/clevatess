@@ -894,6 +894,8 @@ textarea {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  white-space: nowrap;
+  flex: none;
   color: var(--muted);
   font-size: 11.5px;
   margin-right: 6px;
