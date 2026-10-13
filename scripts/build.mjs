@@ -45,6 +45,11 @@ async function writeHtml(metafile) {
   let html = await readFile(join(root, "src/index.html"), "utf8");
   html = html.replace("/assets/main.js", `/${js}`).replace("/assets/main.css", `/${css}`);
   await writeFile(join(staticDir, "index.html"), html);
+  // Handy for checking what a deployment actually serves.
+  await writeFile(
+    join(staticDir, "build.json"),
+    JSON.stringify({ js: `/${js}`, css: `/${css}`, commit: process.env.VERCEL_GIT_COMMIT_SHA ?? "local", builtAt: new Date().toISOString() }),
+  );
 }
 
 async function buildFunctions() {
